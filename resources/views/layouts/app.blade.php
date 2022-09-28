@@ -9,8 +9,6 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -70,6 +68,16 @@
     </nav>
 
     <main class="py-4">
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                <div class="d-flex justify-content-center col-lg-12">
+                <span class="alert alert-danger  col-lg-6" role="alert">
+                                                            <strong>{{ $error }}</strong>
+                                                        </span>
+                </div>
+            @endforeach
+        @endif
+
         @yield('content')
     </main>
 
@@ -77,8 +85,10 @@
         &copy;<script>document.write(new Date().getFullYear());</script> <a href="https://www.linkedin.com/in/nurul-najwa-mahyuddin-918790181/" target="_blank">Nurul Najwa Mahyuddin</a> | All rights reserved </p>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="{{asset('js/bootstrap.js')}}"></script>
+
+    @yield('script')
 </div>
 </body>
 </html>

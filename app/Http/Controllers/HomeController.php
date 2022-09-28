@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\UserAddress;
 use Illuminate\Http\Request;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -24,6 +26,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $address = array();
+
+        if(Auth::user()){
+            $address = UserAddress::where('user_id', Auth::user()->id)->get();
+        }
+
+        return view('home')->with('address', $address);
     }
 }
